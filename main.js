@@ -16,7 +16,7 @@ function calculateTax(income, expenses) {
 function sendNotification(email) {
    let message, userName, domain;
    let isValid = true;
-   const domains = ['email.com', 'gamil.com', 'yahoo.com', 'hotmail.com', 'outlook.com'];
+   const domains = ['email.com', 'gmail.com', 'yahoo.com', 'hotmail.com', 'outlook.com'];
 
    if (typeof email !== "string" || !email.includes("@")) {
       isValid = false;
@@ -29,6 +29,8 @@ function sendNotification(email) {
          if (email[email.indexOf(domain) - 1] !== "@") {
             isValid = false;
          }
+
+         break;
       }
    }
 
@@ -61,6 +63,49 @@ function sendNotification(email) {
    return message
 }
 
-const output = sendNotification("omarbinsal@eh44gmail.com");
-console.log(output)
+// problem number 03:
+function checkDigitsInName(str) {
+   let hasNumber = false;
+
+   if (typeof str !== "string") {
+      return "Invalid Input";
+   }
+
+   for (const char of str) {
+      if(!Number.isNaN(Number(char))) {
+         hasNumber = true;
+         break;
+      }
+   }
+
+   return hasNumber;
+}
+
+// problem number 04:
+function calculateFinalScore(person) {
+   let isEligible, testScore, schoolGrade, isFFamily, finalScore;
+
+   if (Array.isArray(person)) {
+      return "Invalid Input";
+   }
+
+   if (typeof person !== "object") {
+      return "Invalid Input";
+   }
+
+
+   testScore = person.testScore ? person.testScore > 50 ? 50 : person.testScore : 0;
+   schoolGrade = person.schoolGrade ? person.schoolGrade > 30 ? 30 : person.schoolGrade : 0;
+   isFFamily = person.isFFamily ? 20 : 0;
+
+   finalScore = testScore + schoolGrade + isFFamily;
+
+   isEligible = finalScore > 80 ? true : false;
+
+   return isEligible;
+}
+
+const output = calculateFinalScore({ name: "Rajib", testScore: 45,
+   isFFamily : true });
+console.log(output);
 
