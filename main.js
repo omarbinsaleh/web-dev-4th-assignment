@@ -105,7 +105,28 @@ function calculateFinalScore(person) {
    return isEligible;
 }
 
-const output = calculateFinalScore({ name: "Rajib", testScore: 45,
-   isFFamily : true });
-console.log(output);
+// problem number 05:
+function waitingTime(arry, srlNumber) {
+   let timeNeeded, averageTime, remainingPerson;
+
+   if (!Array.isArray(arry) || typeof srlNumber !== "number") {
+      return "Invalid Input";
+   }
+
+   if (srlNumber < arry.length) {
+      timeNeeded = 0;
+      return timeNeeded;
+   }
+
+   let totalTime = 0;
+   for (const item of arry) {
+      totalTime += item;
+   }
+
+   averageTime = totalTime / arry.length;
+   remainingPerson = srlNumber - 1 - arry.length;
+   timeNeeded = Math.round(averageTime * remainingPerson);
+
+   return timeNeeded;
+}
 
